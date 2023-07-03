@@ -1,7 +1,8 @@
 function App() {
   return (
-    <div>TaskTracker</div>
+    <div className="text-center">
+      <div className="font-bold text-lg">TaskTracker</div>
+    </div>
   );
 }
-
 export default App;
