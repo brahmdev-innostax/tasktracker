@@ -101,3 +101,19 @@ exports.updateTodo = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.deleteTodo = async (req, res, next) => {
+  try {
+    const todoId = req.params.todoId;
+    const todo = await Todo.findByIdAndRemove(todoId);
+
+    if (!todo) {
+      return res
+        .status(404)
+        .json({ status: "ERROR", message: "Todo not Found!" });
+    }
+    res.status(200).json({ status: "SUCCESS", message: "Deleted Todo", todo });
+  } catch (error) {
+    const err = new Error("Could not Delete Todo");
+  }
+};

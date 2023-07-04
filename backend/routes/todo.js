@@ -46,5 +46,6 @@ router.patch(
   ],
   todoController.updateTodo
 );
+router.delete("/:todoId", todoController.deleteTodo);
 
 module.exports = router;
