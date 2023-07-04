@@ -57,14 +57,11 @@ exports.createTodo = async (req, res, next) => {
 
     const { title, subtitle, content } = req.body;
 
-
-
     let result;
 
     let file;
 
     if (req.files) {
-
       file = req.files.image;
       console.log(req.body);
       console.log(file);
@@ -84,11 +81,14 @@ exports.createTodo = async (req, res, next) => {
       title,
       subtitle,
       content,
-      image: {
+    });
+
+    if (result) {
+      image = {
         id: result.public_id,
         secure_url: result.secure_url,
-      },
-    });
+      };
+    }
 
     await todo.save();
     res
