@@ -1,9 +1,11 @@
 const router = require("express").Router();
 
-router.get('/')
+const todoController = require("../controllers/todo");
 
-router.get('/:todo')
+router.get("/");
 
-router.post('/')
+router.get("/:todo");
+
+router.post("/");
 
 module.exports = router;
