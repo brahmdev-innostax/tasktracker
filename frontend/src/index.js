@@ -1,13 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AddTodo from "./components/AddTodo";
+import UpdateTodo from "./components/UpdateTodo";
+import ShowTodo from "./components/ShowTodo";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/todo/:todoId" element={<ShowTodo />} />
+        <Route path="/addTodo" element={<AddTodo />} />
+        <Route path="updateTodo/:todoId" element={<UpdateTodo />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
