@@ -73,3 +73,31 @@ exports.createTodo = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.updateTodo = async (req, res, next) => {
+  try {
+    const todoId = req.params.todoId;
+    const todo = await Todo.findById(todoId);
+
+    if (!todo) {
+      return res
+        .status(400)
+        .json({ status: "ERROR", message: "No todo to update!" });
+    }
+
+    const { title, subtitle, content } = req.body;
+
+    todo.title = title;
+    todo.subtitle = subtitle;
+    todo.content = content;
+    await todo.save();
+    res
+      .status(200)
+      .json({ status: "SUCCESS", message: "Todo Updated Successfully!" });
+  } catch (error) {
+    console.log(error);
+    const err = new Error("Could not Update Todo");
+    err.httpStatusCode = 500;
+    next(err);
+  }
+};
