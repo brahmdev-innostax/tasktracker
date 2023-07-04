@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -7,8 +9,8 @@ const morgan = require("morgan");
 
 const app = express();
 
-const PORT = process.env.BACKEND_APP_PORT | 4000;
-const MONGODB_URI = "mongodb+srv://root:toor@innostax.g3v2pig.mongodb.net/todo?retryWrites=true";
+const PORT = process.env.PORT;
+const MONGODB_URI = process.env.MONGO_URI;
 
 const todoRoutes = require("./routes/todo");
 
