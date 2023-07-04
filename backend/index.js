@@ -14,6 +14,7 @@ const MONGODB_URI = process.env.MONGO_URI;
 
 const todoRoutes = require("./routes/todo");
 
+app.use(express.json());
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("tiny"));
@@ -65,7 +66,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res, next) => {
-  res.status(200).json({ message: "Hello from backend" });
+  res.status(200).json({ message: "HELLO FROM BACKEND" });
 });
 
 app.use("/todo", todoRoutes);
