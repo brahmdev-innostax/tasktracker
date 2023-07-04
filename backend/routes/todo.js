@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { body } = require("express-validator");
+const { body, param } = require("express-validator");
 
 const todoController = require("../controllers/todo");
 
@@ -30,11 +30,11 @@ router.post(
 router.patch(
   "/:todoId",
   [
+    param("todoId", "Invalid TodoId").trim().isLength({ min: 5 }),
     body("title", "Please enter a valid title")
       .trim()
       .notEmpty()
-      .isLength({ min: 5 })
-      .withMessage("Invalid Title"),
+      .isLength({ min: 5 }),
     body("subtitle", "Please enter a valid Subtitle")
       .trim()
       .notEmpty()

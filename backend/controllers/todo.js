@@ -1,4 +1,5 @@
 const { validationResult } = require("express-validator");
+const cloudinary = require("cloudinary");
 const Todo = require("../models/todo");
 
 exports.getAllTodos = async (req, res, next) => {

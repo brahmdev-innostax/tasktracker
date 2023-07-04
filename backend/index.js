@@ -29,6 +29,7 @@ app.use((req, res, next) => {
 
   next();
 });
+
 app.use(
   fileUpload({
     useTempFiles: true,
@@ -57,7 +58,7 @@ app.use((req, res, next) => {
       return next();
     }
     const err = new Error("Invalid File. PNG, JPG, JPEG are allowed strictly.");
-    err.httpStatusCode = 500;
+    err.httpStatusCode = 400;
     return next(err);
   }
   next();
@@ -81,6 +82,11 @@ app.use((error, req, res, next) => {
 mongoose
   .connect(MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true })
   .then((res) => {
+    cloudinary.config({
+      cloud_name: process.env.CLOUDINARY_NAME,
+      api_key: process.env.CLOUDINARY_API_KEY,
+      api_secret: process.env.CLOUDINARY_API_SECRET,
+    });
     app.listen(PORT, () => {
       console.log("DATABASE CONNECTED");
       console.log(`Server is running on ${PORT}`);
