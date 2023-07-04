@@ -2,9 +2,9 @@ const router = require("express").Router();
 
 const todoController = require("../controllers/todo");
 
-router.get("/");
+router.get("/", todoController.getAllTodos);
 
-router.get("/:todo");
+router.get("/:todoId", todoController.getSingleTodo);
 
 router.post("/");
 
