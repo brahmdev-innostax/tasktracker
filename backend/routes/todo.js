@@ -1,17 +1,21 @@
 const router = require("express").Router();
 const { body, param } = require("express-validator");
+const ObjectId = require("mongoose").Types.ObjectId;
 
 const todoController = require("../controllers/todo");
 
-router.get(
-  "/",
-  body().custom(async (value) => {
-    console.log(value);
-  }),
-  todoController.getAllTodos
-);
+router.get("/", todoController.getAllTodos);
 
-router.get("/:todoId", todoController.getSingleTodo);
+router.get(
+  "/:todoId",
+  param("todoId").custom(async (value) => {
+    console.log(value, "This is the default Value!!");
+    if (!ObjectId.isValid(value)) {
+      throw new Error("Invalid Todo Id");
+    }
+  }),
+  todoController.getSingleTodo
+);
 
 router.post(
   "/",
@@ -38,6 +42,12 @@ router.post(
 
 router.patch(
   "/:todoId",
+  param("todoId").custom(async (value) => {
+    console.log(value, "This is the default Value!!");
+    if (!ObjectId.isValid(value)) {
+      throw new Error("Invalid Todo Id");
+    }
+  }),
   [
     param("todoId", "Invalid TodoId").trim().isLength({ min: 5 }),
     body("title", "Please enter a valid title")
@@ -58,6 +68,14 @@ router.patch(
   ],
   todoController.updateTodo
 );
-router.delete("/:todoId", todoController.deleteTodo);
+router.delete(
+  "/:todoId",
+  param("todoId").custom(async (value) => {
+    if (!ObjectId.isValid(value)) {
+      throw new Error("Invalid Todo Id");
+    }
+  }),
+  todoController.deleteTodo
+);
 
 module.exports = router;
