@@ -20,11 +20,9 @@ const todoSchema = new Schema(
     image: {
       id: {
         type: String,
-        required: true,
       },
       secure_url: {
         type: String,
-        required: true,
       },
     },
   },

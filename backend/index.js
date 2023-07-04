@@ -8,8 +8,7 @@ const morgan = require("morgan");
 const app = express();
 
 const PORT = process.env.BACKEND_APP_PORT | 4000;
-const MONGODB_URI =
-  "mongodb+srv://root:toor@innostax.g3v2pig.mongodb.net/?retryWrites=true&w=majority/tastTracker";
+const MONGODB_URI = "mongodb+srv://root:toor@innostax.g3v2pig.mongodb.net/todo?retryWrites=true";
 
 const todoRoutes = require("./routes/todo");
 
