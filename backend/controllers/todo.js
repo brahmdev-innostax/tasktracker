@@ -57,10 +57,37 @@ exports.createTodo = async (req, res, next) => {
 
     const { title, subtitle, content } = req.body;
 
+
+
+    let result;
+
+    let file;
+
+    if (req.files) {
+
+      file = req.files.image;
+      console.log(req.body);
+      console.log(file);
+      result = await cloudinary.v2.uploader.upload(file.tempFilePath, {
+        folder: "todos",
+        unique_filenfame: true,
+        transformation: {
+          responsive: true,
+          width: "auto",
+          crop: "crop",
+          aspect_ratio: 16 / 9,
+        },
+      });
+    }
+
     const todo = new Todo({
       title,
       subtitle,
       content,
+      image: {
+        id: result.public_id,
+        secure_url: result.secure_url,
+      },
     });
 
     await todo.save();

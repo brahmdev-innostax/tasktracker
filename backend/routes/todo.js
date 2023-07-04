@@ -3,7 +3,13 @@ const { body, param } = require("express-validator");
 
 const todoController = require("../controllers/todo");
 
-router.get("/", todoController.getAllTodos);
+router.get(
+  "/",
+  body().custom(async (value) => {
+    console.log(value);
+  }),
+  todoController.getAllTodos
+);
 
 router.get("/:todoId", todoController.getSingleTodo);
 
@@ -13,15 +19,18 @@ router.post(
     body("title", "Please enter a valid title")
       .trim()
       .notEmpty()
+      .escape()
       .isLength({ min: 5 })
       .withMessage("Invalid Title"),
     body("subtitle", "Please enter a valid Subtitle")
       .trim()
       .notEmpty()
+      .escape()
       .isLength({ min: 5 }),
     body("content", "Please enter a valid Content")
       .trim()
       .notEmpty()
+      .escape()
       .isLength({ min: 5 }),
   ],
   todoController.createTodo
@@ -34,14 +43,17 @@ router.patch(
     body("title", "Please enter a valid title")
       .trim()
       .notEmpty()
+      .escape()
       .isLength({ min: 5 }),
     body("subtitle", "Please enter a valid Subtitle")
       .trim()
       .notEmpty()
+      .escape()
       .isLength({ min: 5 }),
     body("content", "Please enter a valid Content")
       .trim()
       .notEmpty()
+      .escape()
       .isLength({ min: 5 }),
   ],
   todoController.updateTodo
