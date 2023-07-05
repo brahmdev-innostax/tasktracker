@@ -48,23 +48,6 @@ app.use(
   })
 );
 
-// app.use((req, res, next) => {
-//   if (req.files) {
-//     const file = req.files.image;
-//     if (
-//       file.mimetype == "image/jpeg" ||
-//       file.mimetype == "image/jpg" ||
-//       file.mimetype == "image/png"
-//     ) {
-//       return next();
-//     }
-//     const err = new Error("Invalid File. PNG, JPG, JPEG are allowed strictly.");
-//     err.httpStatusCode = 400;
-//     return next(err);
-//   }
-//   next();
-// });
-
 app.get("/", (req, res, next) => {
   res.status(200).json({ message: "HELLO FROM BACKEND" });
 });
