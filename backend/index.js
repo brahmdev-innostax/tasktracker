@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -7,11 +9,12 @@ const morgan = require("morgan");
 
 const app = express();
 
-const PORT = process.env.BACKEND_APP_PORT | 4000;
-const MONGODB_URI = "mongodb+srv://root:toor@innostax.g3v2pig.mongodb.net/todo?retryWrites=true";
+const PORT = process.env.PORT;
+const MONGODB_URI = process.env.MONGO_URI;
 
 const todoRoutes = require("./routes/todo");
 
+app.use(express.json());
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("tiny"));
@@ -27,6 +30,7 @@ app.use((req, res, next) => {
 
   next();
 });
+
 app.use(
   fileUpload({
     useTempFiles: true,
@@ -55,14 +59,14 @@ app.use((req, res, next) => {
       return next();
     }
     const err = new Error("Invalid File. PNG, JPG, JPEG are allowed strictly.");
-    err.httpStatusCode = 500;
+    err.httpStatusCode = 400;
     return next(err);
   }
   next();
 });
 
 app.get("/", (req, res, next) => {
-  res.status(200).json({ message: "Hello from backend" });
+  res.status(200).json({ message: "HELLO FROM BACKEND" });
 });
 
 app.use("/todo", todoRoutes);
@@ -79,6 +83,11 @@ app.use((error, req, res, next) => {
 mongoose
   .connect(MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true })
   .then((res) => {
+    cloudinary.config({
+      cloud_name: process.env.CLOUDINARY_NAME,
+      api_key: process.env.CLOUDINARY_API_KEY,
+      api_secret: process.env.CLOUDINARY_API_SECRET,
+    });
     app.listen(PORT, () => {
       console.log("DATABASE CONNECTED");
       console.log(`Server is running on ${PORT}`);
