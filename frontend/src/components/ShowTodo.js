@@ -1,3 +1,4 @@
+import swal from "sweetalert";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -21,7 +22,10 @@ function ShowTodo() {
         console.log(res.data);
       })
       .catch((err) => {
-        alert("Unable to fetch data. Please retry.");
+        swal({
+          title: "Unable to fetch data. Please retry.",
+          icon: "error",
+        });
       });
     console.log(initialTodo);
   }, []);
@@ -36,11 +40,14 @@ function ShowTodo() {
         process.env.REACT_APP_BACKEND_URL + "/" + params.todoId.replace(":", "")
       )
       .then((res) => {
-        alert("Todo deleted.");
+        swal({ title: "Todo deleted", icon: "success" });
         navigate("/");
       })
       .catch((err) => {
-        alert("Error occurred: " + err.response.data.errors);
+        swal({
+          title: "Error occurred: " + err.response.data.errors,
+          icon: "error",
+        });
       });
   };
 

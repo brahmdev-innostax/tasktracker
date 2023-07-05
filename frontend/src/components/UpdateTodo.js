@@ -1,3 +1,4 @@
+import swal from "sweetalert";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -25,11 +26,11 @@ function UpdateTodo() {
         }
       )
       .then((res) => {
-        alert("Todo Updated");
+        swal({ title: "Todo updated.", icon: "success" });
         navigate("/");
       })
       .catch((err) => {
-        alert("Error occurred: " + err);
+        swal({ title: "Error occurred: " + err, icon: "error" });
       });
   };
 
@@ -46,7 +47,10 @@ function UpdateTodo() {
         console.log(res.data);
       })
       .catch((err) => {
-        alert("Unable to fetch data. Please retry.");
+        swal({
+          title: "Unable to fetch data. Please retry.",
+          icon: "error",
+        });
       });
     console.log(initialTodo);
   }, []);

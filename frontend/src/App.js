@@ -2,6 +2,7 @@ import Todo from "./components/Todo";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import swal from "sweetalert";
 
 function App() {
   const [todos, setTodos] = useState();
@@ -28,10 +29,10 @@ function App() {
       .delete(process.env.REACT_APP_BACKEND_URL + "/" + id)
       .then((res) => {
         setTodos(updatedTodos);
-        alert("Todo deleted.");
+        swal({ title: "Todo deleted.", icon: "success" });
       })
       .catch((err) => {
-        alert("Error deleting the todo. Please retry.");
+        swal({ title: "Error deleting the todo. Please rety.", icon: "error" });
       });
   };
 

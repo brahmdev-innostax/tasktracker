@@ -1,4 +1,4 @@
-import { useState } from "react";
+import swal from "sweetalert";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -18,12 +18,15 @@ function AddTodo() {
         headers: { "Content-Type": "application/json" },
       })
       .then((res) => {
-        alert("New Todo created");
+        swal({ title: "New Todo created", icon: "success" });
         navigate("/");
       })
       .catch((err) => {
         // console.log(err.response.data.errors);
-        alert("Error occurred: " + err.response.data.errors);
+        swal({
+          title: "Error occurred: " + err.response.data.errors,
+          icon: "error",
+        });
       });
   };
 
