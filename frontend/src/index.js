@@ -12,10 +12,15 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+      {/* routes have been added to allow single page navigation of each page */}
       <Routes>
+        {/* the homescreen, showing list of all Todos */}
         <Route path="/" element={<App />} />
+        {/* the ShowTodo screen */}
         <Route path="/todo/:todoId" element={<ShowTodo />} />
+        {/* the AddTodo screen */}
         <Route path="/addTodo" element={<AddTodo />} />
+        {/* the UpdateTodo screen */}
         <Route path="updateTodo/:todoId" element={<UpdateTodo />} />
       </Routes>
     </BrowserRouter>

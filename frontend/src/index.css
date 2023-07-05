@@ -1,13 +1,16 @@
+/* this page contains invoking of tailwind features to generate classes */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
-*{
-    font-family: 'Catamaran', 'Sans-serif';
+/* some custom styling to add an appealing font, */
+* {
+  font-family: "Catamaran", "Sans-serif";
 }
 
-::-webkit-scrollbar{
-    display: none;
+/* and hide the horizontal scrollbar in the Todo component title  */
+::-webkit-scrollbar {
+  display: none;
 }

@@ -1,6 +1,7 @@
 import swal from "sweetalert";
 import axios from "axios";
 import { useEffect, useState } from "react";
+// for accessing the todoId in the parameter and navigating to the update page on click of Update button
 import { useNavigate, useParams } from "react-router-dom";
 
 function ShowTodo() {
@@ -19,7 +20,7 @@ function ShowTodo() {
       )
       .then((res) => {
         setInitialTodo(res.data.todo);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((err) => {
         swal({
@@ -27,7 +28,7 @@ function ShowTodo() {
           icon: "error",
         });
       });
-    console.log(initialTodo);
+    // console.log(initialTodo);
   }, []);
 
   const updateTodo = () => {
@@ -35,13 +36,14 @@ function ShowTodo() {
   };
 
   const deleteTodo = () => {
+    // axios call to the backend to delete the todo from the db, too
     axios
       .delete(
         process.env.REACT_APP_BACKEND_URL + "/" + params.todoId.replace(":", "")
       )
       .then((res) => {
         swal({ title: "Todo deleted", icon: "success" });
-        navigate("/");
+        navigate("/"); // navigate to the home screen if todo deleted successfully
       })
       .catch((err) => {
         swal({
@@ -53,25 +55,30 @@ function ShowTodo() {
 
   return (
     <div className="w-fit mx-auto">
-      <div className="font-bold text-3xl mt-16 mb-3 text-center">
+      {/* the title of the todo */}
+      <div className="font-bold text-3xl mt-16 mb-3 px-5 text-center">
         {initialTodo.title}
       </div>
 
+      {/* the subtitle */}
       <div className="mt-3 text-center">
         <span>{initialTodo.subtitle}</span>
       </div>
+      {/* the main content of the todo */}
       <div className="mt-8">
-        <div className="p-3 rounded-lg w-[300px] h-[200px] border-2 text-lg border-green-300">
+        <div className="p-3 rounded-lg w-[300px] h-[200px] mx-auto border-2 text-lg border-green-300">
           {initialTodo.content}
         </div>
       </div>
       <div className="mt-3 text-center">
+        {/* a button to redirect to the update page for updating the Todo content */}
         <button
           className="py-2 px-5 rounded mt-[50px] mx-3 bg-blue-500 text-white font-bold"
           onClick={updateTodo}
         >
           Edit
         </button>
+        {/* another button to delete the Todo right from the show screen */}
         <button
           className="py-2 px-5 rounded mt-[50px] bg-red-500 text-white font-bold"
           onClick={deleteTodo}
