@@ -5,7 +5,6 @@ const todoUtils = require("../utils/todoutils");
 
 const expect = chai.expect;
 
-// Group of tests using describe
 describe("todoUtils", function () {
   it("Expected To not create a TODO", () => {
     let todo = todoUtils.addTodo("this is title");
