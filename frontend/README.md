@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+# Task Tracker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a frontend application for a TODO app that provides all the necessary features for creating, reading, and updating todos. Additionally, it allows users to upload files to enhance their task management experience. The frontend has been made mobile responsive to allow accessible acces on mobile devices.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Create, read, and update todos: Users can easily create new tasks, view existing tasks, and update task details as needed.
+- Fully-responsive frontend design: Users can access the Todo App on desktop as well as mobile devices.
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Clone the ```tasktracker``` github repo using the command:
+```git clone https://www.github.com/brahmdev-innostax/tasktracker.git```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Now run the project using the following commands in sequence: 
+```bash
+  cd tasktracker/frontend
+  npm install
+  npm start
+```
 
-### `npm test`
+## Technologies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ReactJS - for creating the frontend,
+Axios - for calling backend APIs and access the various end points, 
+Tailwind CSS - for styling the UI with easy responsiveness
 
-### `npm run build`
+## Environment Variables
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To run this project, you will need to add the following environment variables to your .env file
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+REACT_APP_BACKEND_URL=
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## API Reference
 
-### `npm run eject`
+#### List all Todos
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```<hosted_url>/
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Show Single Todo
+Click on any of the Todo shown in the list, or open the following link:
+```<hosted_url>/<todoId>
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of item to fetch |
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+#### Create Single Todo
 
-## Learn More
+- Click on the Add Todo button (Green colored button at the bottom of the Todo list).
+- Fill the Title, Subtitle, Content fields of the Todo.
+- Click on the Submit button to add the Todo.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Update Single Todo
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Click on the Edit Todo button (pen icon) on the Todo to edit on th list.
+- Change the Title, Subtitle, Content fields of the Todo.
+- Click on the Submit button to add the Todo.
 
-### Code Splitting
+#### Delete Single Todo
+- Click on the Trash icon on a Todo in the list to delete the Todo.
+## Authors
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[@brahmdev-innostax](https://www.github.com/brahmdev-innostax)

@@ -34,7 +34,7 @@ function AddTodo() {
     <div className="w-min mx-auto">
       <div className="font-bold text-3xl my-10 text-center">Add a Todo</div>
 
-      <form validate method="POST" onSubmit={addTodo}>
+      <form validate method="post" onSubmit={addTodo}>
         <div className="mt-5">
           <label htmlFor="title" className="text-lg my-3">
             Title
